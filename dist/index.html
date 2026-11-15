@@ -28,7 +28,7 @@
 
     <section class="base-control" aria-label="Choose the amount base">
       <div><p class="eyebrow">Change the rules</p><h2>What if the envelopes used another base?</h2><p>Keep the same coin-toss probabilities, but replace 10ⁿ with <i>b</i>ⁿ. The base changes both the decision and the paradox.</p></div>
-      <div class="base-buttons" role="group" aria-label="Envelope base"><button type="button" data-base="2">2<sup>n</sup></button><button type="button" data-base="3">3<sup>n</sup></button><button class="selected" type="button" data-base="10">10<sup>n</sup></button></div>
+      <div class="base-slider"><label for="baseRange">Base <output id="baseOutput">10</output></label><input id="baseRange" type="range" min="0" max="21" step="1" value="12" aria-label="Envelope base"><div class="slider-scale"><span>¼</span><span>1</span><span>10</span><span>100</span></div></div>
     </section>
 
     <section class="game" id="play" aria-labelledby="gameTitle">
@@ -40,6 +40,13 @@
       <div class="choice-actions" id="choiceActions" hidden>
         <button class="keep" id="keepButton" type="button">Keep <span id="keepAmount"></span></button>
         <button class="switch" id="switchButton" type="button">Switch for $1 <span>→</span></button>
+      </div>
+      <div class="decision-quiz" id="decisionQuiz" aria-live="polite" hidden>
+        <p class="quiz-step" id="decisionStep">Step 1 of 2</p>
+        <h3 id="decisionQuestion">Before choosing, infer the conditional odds.</h3>
+        <div class="decision-options" id="decisionOptions"></div>
+        <p class="decision-feedback" id="decisionFeedback"></p>
+        <button class="decision-next" id="decisionNext" type="button" hidden>Continue</button>
       </div>
       <div class="round-result" id="roundResult" aria-live="polite" hidden></div>
       <button class="new-round" id="newRound" type="button" hidden>Try another draw</button>
