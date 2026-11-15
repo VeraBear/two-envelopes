@@ -17,4 +17,4 @@ git remote add origin https://github.com/YOUR-USERNAME/YOUR-REPOSITORY.git
 git push -u origin main
 ```
 
-You can then share the repository URL with your professor. The interactive site files are in `dist/`.
+You can then share the repository URL. The interactive site files are in `dist/`.
