@@ -34,7 +34,7 @@ h1,h2{font-family:"Playfair Display",Georgia,serif;letter-spacing:-.055em}
 .envelope.open .flap{display:none}
 .envelope.open .seal{background:transparent;color:var(--ink);width:auto;height:auto;top:50%;font:600 19px "DM Mono"}
 .envelope.dim{opacity:.42;transform:none}
-.choice-actions{grid-column:2;display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:-39px}
+.choice-actions{grid-column:2;display:none;grid-template-columns:1fr 1fr;gap:10px;margin-top:-39px}.choice-actions.is-ready{display:grid}
 .open-prompt{grid-column:2;margin:-31px 0 0;color:var(--muted);font-size:12px;line-height:1.45}.choice-actions[hidden],.decision-quiz[hidden],.round-result[hidden],.new-round[hidden]{display:none!important}
 .choice-actions button,.new-round,.amount-picker button{border:0;cursor:pointer;font:600 13px "Plus Jakarta Sans"}
 .keep,.switch{padding:13px;background:var(--night);color:white}

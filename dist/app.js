@@ -8,7 +8,7 @@ function makeRound(){
   let heads = 0; while(Math.random() < .5 && heads < 9) heads++;
   roundPower = heads; low = base ** heads; high = low * base; chosen = other = null;
   document.querySelectorAll('.envelope').forEach(e => { e.classList.remove('open','dim'); e.querySelector('.seal').textContent='?'; e.disabled=false; });
-  $('choiceActions').hidden = true; $('decisionQuiz').hidden = true; $('roundResult').hidden = true; $('newRound').hidden = true;
+  $('choiceActions').hidden = true; $('choiceActions').classList.remove('is-ready'); $('decisionQuiz').hidden = true; $('roundResult').hidden = true; $('newRound').hidden = true;
   $('gameTitle').textContent = 'Pick an envelope.'; $('gameNarration').textContent = `The envelopes are indistinguishable. One holds ${base} times the other.`;
   $('openPrompt').textContent = 'Click either envelope to reveal its amount. You will work through the odds before choosing whether to keep or switch.';
   $('coinTrail').innerHTML = Array.from({length:Math.min(heads+1,5)},(_,i)=>`<span>${i<heads?'H':'T'}</span>`).join('') + '<small>Harry’s hidden coin tosses</small>';
@@ -61,7 +61,7 @@ function answerExpectation(correct,expected,relation){
   if(!correct){$('decisionFeedback').textContent='Try again—combine the conditional amounts from Step 1, then subtract the $1 fee.';return;}
   const formula=chosenPower===0 || base===1 ? `${money(base)} − $1` : `⅓ × ${money(base**(chosenPower+1))} + ⅔ × ${money(base**(chosenPower-1))} − $1`;
   $('decisionFeedback').innerHTML=`Correct. <strong>${formula} = ${money(expected)}</strong>, which is ${relation} ${money(chosen)}.`;
-  $('decisionNext').hidden=false; $('decisionNext').textContent='Now make your choice'; $('decisionNext').onclick=()=>{$('decisionQuiz').hidden=true;$('choiceActions').hidden=false;};
+  $('decisionNext').hidden=false; $('decisionNext').textContent='Now make your choice'; $('decisionNext').onclick=()=>{$('decisionQuiz').hidden=true;$('choiceActions').hidden=false;$('choiceActions').classList.add('is-ready');$('choiceActions').scrollIntoView({behavior:'smooth',block:'center'});};
 }
 function updateReasoning(power){
   observedPower=power; const seen=base**power, higher=seen*base, lower=seen/base;
