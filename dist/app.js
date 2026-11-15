@@ -10,6 +10,7 @@ function makeRound(){
   document.querySelectorAll('.envelope').forEach(e => { e.classList.remove('open','dim'); e.querySelector('.seal').textContent='?'; e.disabled=false; });
   $('choiceActions').hidden = true; $('decisionQuiz').hidden = true; $('roundResult').hidden = true; $('newRound').hidden = true;
   $('gameTitle').textContent = 'Pick an envelope.'; $('gameNarration').textContent = `The envelopes are indistinguishable. One holds ${base} times the other.`;
+  $('openPrompt').textContent = 'Click either envelope to reveal its amount. You will work through the odds before choosing whether to keep or switch.';
   $('coinTrail').innerHTML = Array.from({length:Math.min(heads+1,5)},(_,i)=>`<span>${i<heads?'H':'T'}</span>`).join('') + '<small>Harry’s hidden coin tosses</small>';
 }
 function selectEnvelope(id){
@@ -19,7 +20,9 @@ function selectEnvelope(id){
   chosen = firstOfPair ? low : high; other = firstOfPair ? high : low; chosenPower = firstOfPair ? roundPower : roundPower + 1;
   picked.classList.add('open'); picked.querySelector('.seal').textContent = money(chosen); unpicked.classList.add('dim');
   $('keepAmount').textContent = money(chosen); $('gameTitle').textContent = `You found ${money(chosen)}.`; $('gameNarration').textContent = 'Before you choose, work through the conditional odds and expectation.';
+  $('openPrompt').textContent = 'Good. Your keep-or-switch decision unlocks after the two short questions below.';
   launchDecisionQuiz();
+  requestAnimationFrame(() => $('decisionQuiz').scrollIntoView({behavior:'smooth', block:'center'}));
 }
 function finish(switched){
   document.querySelectorAll('.envelope').forEach(e=>e.disabled=true);
