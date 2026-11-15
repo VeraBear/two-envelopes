@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="An interactive explanation of the two-envelopes paradox." />
+  <title>The Envelope Room</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header><a class="brand" href="#top"><span>✦</span> The Envelope Room</a><a href="#why">The paradox ↓</a></header>
+  <main id="top">
+    <section class="hero">
+      <p class="eyebrow">A thought experiment in expectation</p>
+      <h1>Would you pay <em>$1</em><br>to switch?</h1>
+      <p>Two envelopes. One holds ten times the other. You open one—and the seemingly rational choice leads somewhere strange.</p>
+      <a class="cta" href="#play">Open an envelope <span>↓</span></a>
+    </section>
+
+    <section class="rules" aria-label="How the game works">
+      <div><b>01</b><p>Harry flips a fair coin until its first tail.</p></div>
+      <div><b>02</b><p>If it takes <i>n</i> heads, he writes <i>10ⁿ</i> and <i>10ⁿ⁺¹</i> on the envelopes.</p></div>
+      <div><b>03</b><p>You open one. You may keep it—or switch for a $1 fee.</p></div>
+    </section>
+
+    <section class="game" id="play" aria-labelledby="gameTitle">
+      <div class="game-copy"><p class="eyebrow">Play the experiment</p><h2 id="gameTitle">Pick an envelope.</h2><p id="gameNarration">The envelopes are indistinguishable. Choose one; the other stays sealed.</p><div class="coin-trail" id="coinTrail" aria-label="The hidden coin tosses"><span>?</span><span>?</span><span>?</span><span>?</span><small>Harry’s hidden coin tosses</small></div></div>
+      <div class="tableau">
+        <button class="envelope" id="envelopeLeft" type="button" aria-label="Choose the left envelope"><span class="flap"></span><span class="seal">?</span></button>
+        <button class="envelope" id="envelopeRight" type="button" aria-label="Choose the right envelope"><span class="flap"></span><span class="seal">?</span></button>
+      </div>
+      <div class="choice-actions" id="choiceActions" hidden>
+        <button class="keep" id="keepButton" type="button">Keep <span id="keepAmount"></span></button>
+        <button class="switch" id="switchButton" type="button">Switch for $1 <span>→</span></button>
+      </div>
+      <div class="round-result" id="roundResult" aria-live="polite" hidden></div>
+      <button class="new-round" id="newRound" type="button" hidden>Try another draw</button>
+    </section>
+
+    <section class="reasoning" id="why">
+      <div class="reasoning-intro"><p class="eyebrow">Pause the game</p><h2>The calculation that makes<br>switching look inevitable.</h2></div>
+      <div class="reveal-grid">
+        <article><span>When you see</span><strong id="seenAmount">$100</strong><p>there are two compatible hidden stories.</p></article>
+        <article class="scenario high"><span>One story</span><strong id="highStory">$1,000</strong><p>is in the other envelope.</p><b id="highProb">1/3 chance</b></article>
+        <article class="scenario low"><span>The other story</span><strong id="lowStory">$10</strong><p>is in the other envelope.</p><b id="lowProb">2/3 chance</b></article>
+      </div>
+      <div class="math-card"><div><span>Expected amount after switching</span><strong id="switchMath">⅓ × $1,000 + ⅔ × $10 − $1</strong></div><div><span>Expected value</span><strong id="switchValue">$339.67</strong></div><p id="mathNote">That is more than the $100 you already hold. So, locally, switch.</p></div>
+      <div class="amount-picker"><span>Explore another observed amount</span><div><button type="button" data-power="0">$1</button><button type="button" data-power="1">$10</button><button class="selected" type="button" data-power="2">$100</button><button type="button" data-power="3">$1k</button><button type="button" data-power="4">$10k</button></div></div>
+    </section>
+
+    <section class="resolution">
+      <div><p class="eyebrow">The resolution</p><h2>“Always switch” is not a free lunch.</h2><p>Every <em>conditional</em> calculation says switching is better. But before an envelope is opened, the expected amount in either envelope is infinite: enormous amounts are rare, yet their size grows faster than their probability shrinks.</p></div>
+      <div class="series"><p><span>n</span><span>Chance of pair</span><span>Total in pair</span></p><p><span>0</span><span>½</span><span>$11</span></p><p><span>1</span><span>¼</span><span>$110</span></p><p><span>2</span><span>⅛</span><span>$1,100</span></p><p><span>…</span><span>…</span><span>…</span></p><p><span>n</span><span>2⁻ⁿ⁻¹</span><span>11 × 10ⁿ</span></p><strong>The average does not settle to a finite number.</strong></div>
+    </section>
+    <section class="takeaway"><p>When expectations are infinite or undefined, familiar rules such as “a guaranteed $1 cost makes you worse off” stop being safe comparison tools.</p></section>
+  </main>
+  <footer>Based on the two-envelopes formulation from 18.600 Problem Set 8.</footer>
+  <script src="app.js"></script>
+</body>
+</html>
